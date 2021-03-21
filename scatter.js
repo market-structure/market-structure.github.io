@@ -129,7 +129,7 @@ d3.csv("fb.csv", function(error, data) {
       .enter()
      .append("text")
                 .text(function(d) {
-                    return d["brand"];
+                    return d["brand"].replace(" (Verified Page)","");
                 })
                 .attr("x", function(d) {
                     return d.x;  // Returns scaled location of x
@@ -141,27 +141,9 @@ d3.csv("fb.csv", function(error, data) {
                 .attr("font_family", "sans-serif")  // Font type
                 .attr("font-size", "9px")  // Font size
                 .attr("fill", "black");   // Font color     
+      //.on("mouseover", tip.show)
+      //.on("mouseout", tip.hide);
 
-//      .on("mouseover", tip.show)
-//      .on("mouseout", tip.hide);
-
-/*
-  d3.select("input").on("click", change);
-
-  function change() {
-    xCat = "Carbs";
-    xMax = d3.max(data, function(d) { return d[xCat]; });
-    xMin = d3.min(data, function(d) { return d[xCat]; });
-
-    zoomBeh.x(x.domain([xMin, xMax])).y(y.domain([yMin, yMax]));
-
-    var svg = d3.select("#scatter").transition();
-
-    svg.select(".x.axis").duration(750).call(xAxis).select(".label").text(xCat);
-
-    objects.selectAll(".dot").transition().duration(1000).attr("transform", transform);
-  }
-*/
   function zoom() {
     svg.select(".x.axis").call(xAxis);
     svg.select(".y.axis").call(yAxis);
